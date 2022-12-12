@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ExerciseCard extends StatefulWidget {
-  const ExerciseCard({super.key});
+  final String title;
+  final String subheading;
+
+  const ExerciseCard({Key? key, required this.title, required this.subheading})
+      : super(key: key);
   @override
   _ExerciseCardState createState() => _ExerciseCardState();
 }
 
 class _ExerciseCardState extends State<ExerciseCard> {
-  String _title = 'Bench press';
-  String subheading = 'Chest | Free Weight | Barbell';
   var supportingText =
       'Beautiful exercise to build chest muscle and strength ...';
   @override
@@ -18,8 +20,8 @@ class _ExerciseCardState extends State<ExerciseCard> {
         child: Column(
           children: [
             ListTile(
-              title: Text(_title),
-              subtitle: Text(subheading),
+              title: Text(widget.title),
+              subtitle: Text(widget.subheading),
               trailing: Icon(Icons.favorite_outline),
             ),
             Container(

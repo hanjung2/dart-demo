@@ -27,6 +27,70 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
+  final List<Widget> _widgetOptions = <Widget>[
+    Container(
+      padding: EdgeInsets.all(16.0),
+      child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: const [
+              ExerciseCard(
+                title: 'Bench Press',
+                subheading: 'Chest | Free Weight | Barbell',
+              ),
+              ExerciseCard(
+                  title: 'Military Press',
+                  subheading: 'Shoulder | Free Weight | Barbell'),
+              ExerciseCard(
+                  title: 'Military Press',
+                  subheading: 'Shoulder | Free Weight | Barbell'),
+              ExerciseCard(
+                  title: 'Military Press',
+                  subheading: 'Shoulder | Free Weight | Barbell'),
+              ExerciseCard(
+                  title: 'Military Press',
+                  subheading: 'Shoulder | Free Weight | Barbell'),
+              ExerciseCard(
+                  title: 'Military Press',
+                  subheading: 'Shoulder | Free Weight | Barbell')
+            ],
+          )),
+    ),
+    const Text(
+      'User Profile Page',
+      style: optionStyle,
+    ),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  Widget exerciseList() {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: const [
+              ExerciseCard(
+                title: 'Bench Press',
+                subheading: 'Chest | Free Weight | Barbell',
+              ),
+              ExerciseCard(
+                  title: 'Military Press',
+                  subheading: 'Shoulder | Free Weight | Barbell')
+            ],
+          )),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,21 +98,19 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Colors.black45,
         title: Text(widget.title),
       ),
-      body: Container(
-        padding: EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              children: const [ExerciseCard(), ExerciseCard()],
-            )),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar:
-          BottomNavigationBar(items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.dumbbell), label: 'Workout'),
-        BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.userAstronaut), label: 'Profile')
-      ]),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.dumbbell), label: 'Workout'),
+          BottomNavigationBarItem(
+              icon: FaIcon(FontAwesomeIcons.userAstronaut), label: 'Profile')
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+      ),
     );
   }
 }
