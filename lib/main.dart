@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:train_log/pages/workout_list.dart';
 import 'package:train_log/widgets/exercise_card.dart';
 
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
 
 class MainPage extends StatefulWidget {
   final String title;
-  MainPage({this.title = 'demo'});
+  MainPage({super.key, this.title = 'demo'});
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -32,34 +33,7 @@ class _MainPageState extends State<MainPage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   final List<Widget> _widgetOptions = <Widget>[
-    Container(
-      padding: EdgeInsets.all(16.0),
-      child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: const [
-              ExerciseCard(
-                title: 'Bench Press',
-                subheading: 'Chest | Free Weight | Barbell',
-              ),
-              ExerciseCard(
-                  title: 'Military Press',
-                  subheading: 'Shoulder | Free Weight | Barbell'),
-              ExerciseCard(
-                  title: 'Military Press',
-                  subheading: 'Shoulder | Free Weight | Barbell'),
-              ExerciseCard(
-                  title: 'Military Press',
-                  subheading: 'Shoulder | Free Weight | Barbell'),
-              ExerciseCard(
-                  title: 'Military Press',
-                  subheading: 'Shoulder | Free Weight | Barbell'),
-              ExerciseCard(
-                  title: 'Military Press',
-                  subheading: 'Shoulder | Free Weight | Barbell')
-            ],
-          )),
-    ),
+    WorkoutList(),
     const Text(
       'User Profile Page',
       style: optionStyle,
@@ -70,25 +44,6 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       _selectedIndex = index;
     });
-  }
-
-  Widget exerciseList() {
-    return Container(
-      padding: EdgeInsets.all(16.0),
-      child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: const [
-              ExerciseCard(
-                title: 'Bench Press',
-                subheading: 'Chest | Free Weight | Barbell',
-              ),
-              ExerciseCard(
-                  title: 'Military Press',
-                  subheading: 'Shoulder | Free Weight | Barbell')
-            ],
-          )),
-    );
   }
 
   @override
