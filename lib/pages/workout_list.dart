@@ -18,14 +18,14 @@ class _WorkoutList extends State<WorkoutList> {
           onPressed: () {},
           child: Text('Button'),
         ),
-        Container(
-          height: MediaQuery.of(context).size.height - 140,
+        Expanded(
           child: ListView.builder(
-              itemBuilder: ((_, index) => ExerciseCard(
-                    subheading: '$index workout',
-                    title: '$index workout',
-                  ))),
-        )
+            itemBuilder: ((_, index) => ExerciseCard(
+                  subheading: '$index workout',
+                  title: '$index workout',
+                )),
+          ),
+        ),
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:train_log/pages/user_profile.dart';
 import 'package:train_log/pages/workout_list.dart';
 import 'package:train_log/widgets/exercise_card.dart';
 
@@ -33,11 +34,8 @@ class _MainPageState extends State<MainPage> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   final List<Widget> _widgetOptions = <Widget>[
-    WorkoutList(),
-    const Text(
-      'User Profile Page',
-      style: optionStyle,
-    ),
+    const WorkoutList(),
+    const UserProfilePage(),
   ];
 
   void _onItemTapped(int index) {
