@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:train_log/pages/user_profile.dart';
 import 'package:train_log/pages/workout_list.dart';
-import 'package:train_log/widgets/exercise_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,14 +15,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: false,
-      home: MainPage(title: 'Flutter Card Demo'),
+      home: MainPage(title: 'Workout List'),
     );
   }
 }
 
 class MainPage extends StatefulWidget {
   final String title;
-  MainPage({super.key, this.title = 'demo'});
+  MainPage({super.key, this.title = ''});
   @override
   _MainPageState createState() => _MainPageState();
 }
@@ -48,7 +47,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black45,
+        backgroundColor: Colors.blueAccent,
         title: Text(widget.title),
       ),
       body: Center(
