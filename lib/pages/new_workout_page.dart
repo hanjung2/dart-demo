@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/add_exercise_dialog.dart';
+
 class NewWorkoutPage extends StatefulWidget {
   const NewWorkoutPage({super.key});
 
@@ -8,15 +10,17 @@ class NewWorkoutPage extends StatefulWidget {
 }
 
 class _NewWorkoutPage extends State<NewWorkoutPage> {
+  Widget buildDialog() => const NewExerciseDialog();
+
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       minChildSize: .3,
       initialChildSize: .9,
       builder: (_, controller) => Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
-          borderRadius: const BorderRadius.vertical(
+          borderRadius: BorderRadius.vertical(
             top: Radius.circular(20),
           ),
         ),
@@ -25,7 +29,8 @@ class _NewWorkoutPage extends State<NewWorkoutPage> {
           controller: controller,
           children: [
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => showDialog(
+                  context: context, builder: (context) => buildDialog()),
               child: const Text('Add Excercise'),
             )
           ],
