@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:train_log/widgets/exercise_card.dart';
+
+import '../models/exercise_model.dart';
 
 class NewExerciseDialog extends StatefulWidget {
   const NewExerciseDialog({super.key});
@@ -11,12 +14,27 @@ class NewExerciseDialog extends StatefulWidget {
 class _NewExerciseDialog extends State<NewExerciseDialog> {
   @override
   Widget build(BuildContext context) {
+    Set<Exercise> exerciseList = <Exercise>{
+      Exercise('Bench Press', {'Chest', 'Tricep'}),
+      Exercise('Squat', {
+        'Leg',
+      }),
+      Exercise('Shoulder Press', {'Shoulder'}),
+      Exercise('Pull Up', {'Back'})
+    };
+
     return Dialog(
       child: Column(
         // ignore: prefer_const_literals_to_create_immutables
         children: [
-          const Center(
-            child: Text('Add Exercise'),
+          Container(
+            margin: const EdgeInsets.all(20),
+            child: const Center(
+              child: Text(
+                'Add Exercise',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
           ),
           // ignore: prefer_const_constructors
           TextField(
@@ -30,11 +48,28 @@ class _NewExerciseDialog extends State<NewExerciseDialog> {
           ),
           Expanded(
             child: ListView.builder(
+              itemCount: exerciseList.length,
               itemBuilder: (_, index) => Container(
-                child: Text('item num $index'),
+                margin: const EdgeInsets.only(top: 5.0),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Container(
+                //         margin: const EdgeInsets.only(left: 25.0),
+                //         child: Text(exerciseList.toList()[index].exerciseName)),
+                //     Container(
+                //       margin: const EdgeInsets.only(right: 25.0),
+                //       child: ElevatedButton(
+                //           onPressed: () => {Navigator.pop(context)},
+                //           child: const Text('Add')),
+                //     )
+                child: ExerciseCard(
+                    title: exerciseList.toList()[index].exerciseName,
+                    subtitle:
+                        exerciseList.toList()[index].targetArea.join(', ')),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
