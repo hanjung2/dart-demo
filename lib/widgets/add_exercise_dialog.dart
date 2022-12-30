@@ -51,18 +51,6 @@ class _NewExerciseDialog extends State<NewExerciseDialog> {
               itemCount: exerciseList.length,
               itemBuilder: (_, index) => Container(
                 margin: const EdgeInsets.only(top: 5.0),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     Container(
-                //         margin: const EdgeInsets.only(left: 25.0),
-                //         child: Text(exerciseList.toList()[index].exerciseName)),
-                //     Container(
-                //       margin: const EdgeInsets.only(right: 25.0),
-                //       child: ElevatedButton(
-                //           onPressed: () => {Navigator.pop(context)},
-                //           child: const Text('Add')),
-                //     )
                 child: ExerciseCard(
                     title: exerciseList.toList()[index].exerciseName,
                     subtitle:
