@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:train_log/bloc/new_exercise_cubit.dart';
 import 'package:train_log/pages/user_profile.dart';
 import 'package:train_log/pages/workout_list.dart';
 
@@ -12,10 +14,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.light(),
-      debugShowCheckedModeBanner: false,
-      home: MainPage(title: 'Workout List'),
+    return BlocProvider(
+      create: (_) => NewExerciseCubit(),
+      child: MaterialApp(
+        theme: ThemeData.light(),
+        debugShowCheckedModeBanner: false,
+        home: MainPage(title: 'Workout List'),
+      ),
     );
   }
 }
@@ -24,13 +29,11 @@ class MainPage extends StatefulWidget {
   final String title;
   MainPage({super.key, this.title = ''});
   @override
-  _MainPageState createState() => _MainPageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   final List<Widget> _widgetOptions = <Widget>[
     const WorkoutList(),

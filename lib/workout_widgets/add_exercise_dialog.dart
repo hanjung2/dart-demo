@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:train_log/widgets/exercise_card.dart';
+import 'package:train_log/workout_widgets/exercise_card.dart';
 
-import '../models/exercise_model.dart';
+import '../models/exercise.model.dart';
 
-class NewExerciseDialog extends StatefulWidget {
-  const NewExerciseDialog({super.key});
+class AddExerciseDialog extends StatefulWidget {
+  const AddExerciseDialog({super.key});
 
   @override
-  State<NewExerciseDialog> createState() => _NewExerciseDialog();
+  State<AddExerciseDialog> createState() => _AddExerciseDialog();
 }
 
-class _NewExerciseDialog extends State<NewExerciseDialog> {
+class _AddExerciseDialog extends State<AddExerciseDialog> {
   @override
   Widget build(BuildContext context) {
     Set<Exercise> exerciseList = <Exercise>{
@@ -52,9 +52,9 @@ class _NewExerciseDialog extends State<NewExerciseDialog> {
               itemBuilder: (_, index) => Container(
                 margin: const EdgeInsets.only(top: 5.0),
                 child: ExerciseCard(
-                    title: exerciseList.toList()[index].exerciseName,
-                    subtitle:
-                        exerciseList.toList()[index].targetArea.join(', ')),
+                  key: ValueKey(index.toString()),
+                  exercise: exerciseList.toList()[index],
+                ),
               ),
             ),
           ),

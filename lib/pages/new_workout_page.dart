@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:train_log/models/exercise.model.dart';
+import 'package:train_log/models/exercise_set_detail.model.dart';
+import 'package:train_log/workout_widgets/exercise_set.dart';
 
-import '../widgets/add_exercise_dialog.dart';
+import '../bloc/new_exercise_cubit.dart';
+import '../workout_widgets/add_exercise_dialog.dart';
 
 class NewWorkoutPage extends StatefulWidget {
   const NewWorkoutPage({super.key});
@@ -10,13 +15,13 @@ class NewWorkoutPage extends StatefulWidget {
 }
 
 class _NewWorkoutPage extends State<NewWorkoutPage> {
-  Widget buildDialog() => const NewExerciseDialog();
+  Widget buildDialog() => const AddExerciseDialog();
 
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       minChildSize: .3,
-      initialChildSize: .9,
+      initialChildSize: .94,
       builder: (_, controller) => Container(
         decoration: const BoxDecoration(
           color: Colors.white,
@@ -25,14 +30,26 @@ class _NewWorkoutPage extends State<NewWorkoutPage> {
           ),
         ),
         padding: const EdgeInsets.all(32),
-        child: ListView(
-          controller: controller,
+        child: Column(
           children: [
             ElevatedButton(
               onPressed: () => showDialog(
                   context: context, builder: (context) => buildDialog()),
               child: const Text('Add Excercise'),
-            )
+            ),
+            BlocBuilder<NewExerciseCubit, List<ExerciseSetDetail>>(
+                builder: (context, exerciseList) {
+              return Expanded(
+                child: ListView.builder(
+                  itemCount: exerciseList.length,
+                  itemBuilder: (_, index) => Container(
+                      margin: const EdgeInsets.only(top: 5.0),
+                      child: ExerciseSet(
+                          exerciseName:
+                              exerciseList[index].exercise.exerciseName)),
+                ),
+              );
+            }),
           ],
         ),
       ),

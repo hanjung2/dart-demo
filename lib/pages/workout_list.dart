@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../widgets/exercise_card.dart';
 import 'new_workout_page.dart';
 
 class WorkoutList extends StatefulWidget {
@@ -11,7 +9,7 @@ class WorkoutList extends StatefulWidget {
 }
 
 class _WorkoutList extends State<WorkoutList> {
-  Widget buildSheet() => const NewWorkoutPage();
+  Widget buildSheet() => NewWorkoutPage();
 
   @override
   Widget build(BuildContext context) {
