@@ -44,9 +44,8 @@ class _NewWorkoutPage extends State<NewWorkoutPage> {
                   itemCount: exerciseList.length,
                   itemBuilder: (_, index) => Container(
                       margin: const EdgeInsets.only(top: 5.0),
-                      child: ExerciseSet(
-                          exerciseName:
-                              exerciseList[index].exercise.exerciseName)),
+                      child:
+                          ExerciseSet(exerciseSetDetail: exerciseList[index])),
                 ),
               );
             }),
